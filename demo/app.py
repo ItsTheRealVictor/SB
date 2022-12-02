@@ -74,7 +74,3 @@ def show_details(pet_id):
     '''show details about a single pet'''
     shown_pet = Pet.query.get(pet_id)
     return render_template('details.html', shown_pet=shown_pet)
-
-@app.route('/', methods=['POST'])
-def pet_form():
-    return 'data sent'
