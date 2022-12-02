@@ -48,3 +48,29 @@ class Pet(db.Model):
         """Get all pets matching that species."""
 
         return cls.query.filter_by(species=species).all()
+    
+names = [
+    'biggie',
+    'keko',
+    'roger'
+]
+species = [
+    'dog',
+    'cat',
+    'bird'
+]
+# together = [Pet(name=n, species=s) for n, s in zip(names, species)]
+# db.session.add_all(together)
+# db.session.commit()
+
+    
+@app.route('/')
+def list_pets():
+    pets = Pet.query.all()
+    return render_template('list.html', pets=pets)
+
+@app.route('/<int:pet_id>')
+def show_details(pet_id):
+    '''show details about a single pet'''
+    shown_pet = Pet.query.get(pet_id)
+    return render_template('details.html', shown_pet=shown_pet)
