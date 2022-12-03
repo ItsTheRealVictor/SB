@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, migrate
 
@@ -77,4 +77,11 @@ def show_details(pet_id):
 
 @app.route('/', methods=['POST'])
 def make_pet():
-    return 'noice, you sent data'
+    name = request.form.get('name')
+    species = request.form.get('species')
+    hunger = request.form.get('hunger')
+    
+    data = Pet(name=name, species=species, hunger=hunger)
+    db.session.add(data)
+    db.session.commit()
+    return redirect('/')
