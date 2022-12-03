@@ -1,0 +1,10 @@
+
+venv/
+__pycache__/
+sqla-intro-demo/
+migrations/script.py.mako
+migrations/versions/1d2d23d7659e_setup.py
+migrations/env.py
+migrations/alembic.ini
+migrations/README
+site.db
