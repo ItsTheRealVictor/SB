@@ -85,3 +85,8 @@ def make_pet():
     db.session.add(data)
     db.session.commit()
     return redirect('/')
+
+@app.route('/species/<species_id>')
+def show_by_species(species_id):
+    pets = Pet.get_by_species(species_id)
+    return render_template('species.html', pets=pets, species=species_id)
